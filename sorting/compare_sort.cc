@@ -1,12 +1,14 @@
-#include "CompareSort.hpp"
+#include "compare_sort.h"
 
-void DSZP::swap (int &a, int &b) {
+namespace ZP {
+
+void swap (int &a, int &b) {
     int t = a;
     a = b;
     b = t;
 }
 
-int* DSZP::insertionSort (int *arr, int len) {
+int* insertionSort (int *arr, int len) {
     for (int i = 1; i < len; ++i) {
         for (int j = i; j > 0 && arr[j] < arr[j-1]; --j) {
             swap(arr[j], arr[j-1]);
@@ -15,7 +17,7 @@ int* DSZP::insertionSort (int *arr, int len) {
     return arr;
 }
 
-int* DSZP::bubbleSort (int *arr, int len) {
+int* bubbleSort (int *arr, int len) {
     for (int i = 0; i < len-1; ++i) {
         for (int j = 0; j < len-1-i; ++j) {
             if (arr[j] > arr[j+1]) {
@@ -26,7 +28,7 @@ int* DSZP::bubbleSort (int *arr, int len) {
     return arr;
 }
 
-int* DSZP::selectionSort (int *arr, int len) {
+int* selectionSort (int *arr, int len) {
     int selectedIndex;
     for (int i = 0; i < len-1; ++i) {
         selectedIndex = i;
@@ -42,7 +44,7 @@ int* DSZP::selectionSort (int *arr, int len) {
     return arr;
 }
 
-int* DSZP::mergeSortedArray (int *arr1, int sz1, int *arr2, int sz2) {
+int* mergeSortedArray (int *arr1, int sz1, int *arr2, int sz2) {
     int* mergedArray = new int[sz1+sz2];
     int count1 = 0, count2 = 0, i = 0;
     while (count1 < sz1 && count2 < sz2) {
@@ -61,7 +63,7 @@ int* DSZP::mergeSortedArray (int *arr1, int sz1, int *arr2, int sz2) {
     return mergedArray;
 }
 
-int* DSZP::mergeSort (int *arr, int size) {
+int* mergeSort (int *arr, int size) {
     if (size < 2) {
         return arr;
     }
@@ -75,7 +77,7 @@ int* DSZP::mergeSort (int *arr, int size) {
     return arr;
 }
 
-void DSZP::heapify (int* arr, int pos, int len) {
+void heapify (int* arr, int pos, int len) {
     if (pos < len) {
         int left = pos * 2 + 1, right = pos * 2 + 2, max = pos;
         if (left < len && arr[left] > arr[max]) {
@@ -91,13 +93,13 @@ void DSZP::heapify (int* arr, int pos, int len) {
     }
 }
 
-void DSZP::buildHeap (int* arr, int len) {
+void buildHeap (int* arr, int len) {
     for (int i = len / 2; i >= 0; --i) {
         heapify(arr, i, len);
     }
 }
 
-int* DSZP::heapSort (int* arr, int len) {
+int* heapSort (int* arr, int len) {
     for (int i = 0; i < len; ++i) {
         buildHeap(arr, len - i);
         int temp = arr[0];
@@ -107,7 +109,7 @@ int* DSZP::heapSort (int* arr, int len) {
     return arr;
 }
 
-int* DSZP::quickSort (int *arr, int len) {
+int* quickSort (int *arr, int len) {
     if (len >= 2) {
         int piv = len - 1, i = 0, j = piv - 1;
         while (i < j) {
@@ -126,4 +128,6 @@ int* DSZP::quickSort (int *arr, int len) {
         quickSort(arr+piv+1, len-piv-1);
     }
     return arr;
+}
+
 }

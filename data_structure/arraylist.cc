@@ -1,25 +1,19 @@
-//
-//  ArrayList.cpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/8/27.
-//  Copyright © 2019 ZP. All rights reserved.
-//
+#include "arraylist.h"
 
-#include "ArrayList.hpp"
+namespace ZP {
 
-DSZP::ArrayList::ArrayList ():
+ArrayList::ArrayList ():
 size(0), capacity(10), buf(new int[10]) {
 }
 
-DSZP::ArrayList::ArrayList (const ArrayList& al) :
+ArrayList::ArrayList (const ArrayList& al) :
 size(al.size), capacity(al.capacity), buf(new int[al.size]) {
     for (int i = 0; i < size; ++i) {
         buf[i] = al.buf[i];
     }
 }
 
-void DSZP::ArrayList::expand () {
+void ArrayList::expand () {
     capacity *= 2;
     int* newbuf = new int[capacity];
     for (int i = 0; i < size; ++i) {
@@ -29,7 +23,7 @@ void DSZP::ArrayList::expand () {
     buf = newbuf;
 }
 
-DSZP::ArrayList DSZP::ArrayList::operator = (const ArrayList &al) {
+ArrayList ArrayList::operator = (const ArrayList &al) {
     delete [] buf;
     size = al.size;
     capacity = al.capacity;
@@ -39,11 +33,11 @@ DSZP::ArrayList DSZP::ArrayList::operator = (const ArrayList &al) {
     return *this;
 }
 
-int DSZP::ArrayList::getSize () {
+int ArrayList::getSize () {
     return size;
 }
 
-void DSZP::ArrayList::insert (int pos, int val) {
+void ArrayList::insert (int pos, int val) {
     if (pos < 0) {
         addFirst(val);
     } else if (pos >= size) {
@@ -60,21 +54,21 @@ void DSZP::ArrayList::insert (int pos, int val) {
     }
 }
 
-void DSZP::ArrayList::addLast (int val) {
+void ArrayList::addLast (int val) {
     if (size >= capacity) {
         expand();
     }
     buf[size++] = val;
 }
 
-void DSZP::ArrayList::addFirst (int val) {
+void ArrayList::addFirst (int val) {
     if (size >= capacity) {
         expand();
     }
     insert(0, val);
 }
 
-int DSZP::ArrayList::remove (int pos) {
+int ArrayList::remove (int pos) {
     if (!size) {
         throw "Empty list";
     }
@@ -92,25 +86,25 @@ int DSZP::ArrayList::remove (int pos) {
     }
 }
 
-int DSZP::ArrayList::removeFirst() {
+int ArrayList::removeFirst() {
     return remove(0);
 }
 
-int DSZP::ArrayList::removeLast() {
+int ArrayList::removeLast() {
     if (!size) {
         throw "Empty list";
     }
     return buf[size--];
 }
 
-int& DSZP::ArrayList::operator [] (int pos) {
+int& ArrayList::operator [] (int pos) {
     if (pos < 0 || pos >= size) {
         throw "Index out of bound";
     }
     return buf[pos];
 }
 
-void DSZP::ArrayList::reverse () {
+void ArrayList::reverse () {
     if (!size) {
         return;
     }
@@ -122,7 +116,7 @@ void DSZP::ArrayList::reverse () {
     }
 }
 
-std::ostream& DSZP::operator << (std::ostream& out, const ArrayList& al) {
+std::ostream& operator << (std::ostream& out, const ArrayList& al) {
     if (!al.size) {
         return out;
     } else {
@@ -135,6 +129,8 @@ std::ostream& DSZP::operator << (std::ostream& out, const ArrayList& al) {
     return out;
 }
 
-DSZP::ArrayList::~ArrayList () {
+ArrayList::~ArrayList () {
     delete [] buf;
+}
+
 }

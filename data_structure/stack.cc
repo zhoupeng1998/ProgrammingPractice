@@ -1,18 +1,10 @@
-//
-//  Stack.cpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/8/24.
-//  Copyright © 2019 ZP. All rights reserved.
-//
+#include "stacK.h"
 
-#include "Stack.hpp"
-
-DSZP::Stack::Stack() :
+Stack::Stack() :
     capacity(10), size(0), buf(new int[11]), cur(buf) {
 }
 
-DSZP::Stack::Stack(const DSZP::Stack& s) :
+Stack::Stack(const Stack& s) :
     capacity(s.capacity), size(s.size), buf(new int[s.capacity+1]), cur(buf) {
         for (int i = 1; i <= size; ++i) {
             buf[i] = s.buf[i];
@@ -20,7 +12,7 @@ DSZP::Stack::Stack(const DSZP::Stack& s) :
         }
 }
 
-DSZP::Stack DSZP::Stack::operator = (const Stack &s) {
+Stack Stack::operator = (const Stack &s) {
     delete [] buf;
     capacity = s.capacity;
     size = s.size;
@@ -33,7 +25,7 @@ DSZP::Stack DSZP::Stack::operator = (const Stack &s) {
     return *this;
 }
 
-void DSZP::Stack::expand() {
+void Stack::expand() {
     capacity *= 2;
     int* newbuf = new int[capacity+1];
     cur = newbuf;
@@ -45,15 +37,15 @@ void DSZP::Stack::expand() {
     buf = newbuf;
 }
 
-bool DSZP::Stack::empty() const {
+bool Stack::empty() const {
     return size == 0;
 }
 
-int DSZP::Stack::getSize() {
+int Stack::getSize() {
     return size;
 }
 
-void DSZP::Stack::push(int i) {
+void Stack::push(int i) {
     size++;
     if (size > capacity) {
         expand();
@@ -61,20 +53,20 @@ void DSZP::Stack::push(int i) {
     *++cur = i;
 }
 
-void DSZP::Stack::pop() {
+void Stack::pop() {
     if (!empty()) {
         --cur;
         --size;
     }
 }
 
-int& DSZP::Stack::top() {
+int& Stack::top() {
     if (empty()) {
         throw "Stack Empty";
     }
     return *cur;
 }
 
-DSZP::Stack::~Stack() {
+Stack::~Stack() {
     delete [] buf;
 }

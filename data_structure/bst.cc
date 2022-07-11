@@ -1,32 +1,26 @@
-//
-//  BinarySearchTree.cpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/9/1.
-//  Copyright © 2019 ZP. All rights reserved.
-//
-
 #include <iostream>
-#include "BinarySearchTree.hpp"
+#include "bst.h"
 
-DSZP::BinarySearchTree::BinarySearchTree () :
+namespace ZP {
+
+BinarySearchTree::BinarySearchTree () :
 size(0), head(nullptr) {
 }
 
-DSZP::BinarySearchTree::BinarySearchTree (const BinarySearchTree& tree) :
+BinarySearchTree::BinarySearchTree (const BinarySearchTree& tree) :
 size(tree.size), head(copy(tree.head)) {
 }
 
-DSZP::BinarySearchTree DSZP::BinarySearchTree::operator = (const BinarySearchTree &tree) {
+BinarySearchTree BinarySearchTree::operator = (const BinarySearchTree &tree) {
     removeAll(head);
     size = tree.size;
     head = copy(tree.head);
     return *this;
 }
 
-DSZP::TreeNode* DSZP::BinarySearchTree::copy (TreeNode *src) {
+TreeNode* BinarySearchTree::copy (TreeNode *src) {
     if (src) {
-        DSZP::TreeNode* node = new DSZP::TreeNode();
+        TreeNode* node = new TreeNode();
         node->info = src->info;
         node->left = copy(src->left);
         node->right = copy(src->right);
@@ -36,17 +30,17 @@ DSZP::TreeNode* DSZP::BinarySearchTree::copy (TreeNode *src) {
     }
 }
 
-int DSZP::BinarySearchTree::getSize () {
+int BinarySearchTree::getSize () {
     return size;
 }
 
-void DSZP::BinarySearchTree::add (int i) {
+void BinarySearchTree::add (int i) {
     if (addNode(i, head)) {
         ++size;
     }
 }
 
-DSZP::TreeNode* DSZP::BinarySearchTree::addNode (int i, TreeNode*& tn) {
+TreeNode* BinarySearchTree::addNode (int i, TreeNode*& tn) {
     if (!tn) {
         tn = new TreeNode();
         tn->info = i;
@@ -61,11 +55,11 @@ DSZP::TreeNode* DSZP::BinarySearchTree::addNode (int i, TreeNode*& tn) {
     return nullptr;
 }
 
-bool DSZP::BinarySearchTree::contains (int i) {
+bool BinarySearchTree::contains (int i) {
     return findNode(i, head);
 }
 
-bool DSZP::BinarySearchTree::findNode (int i, TreeNode *tn) {
+bool BinarySearchTree::findNode (int i, TreeNode *tn) {
     if (!tn) {
         return false;
     } else if (tn->info == i) {
@@ -75,11 +69,11 @@ bool DSZP::BinarySearchTree::findNode (int i, TreeNode *tn) {
     }
 }
 
-void DSZP::BinarySearchTree::traversalPreorder () {
+void BinarySearchTree::traversalPreorder () {
     preorder(head);
 }
 
-void DSZP::BinarySearchTree::preorder (TreeNode* tn) {
+void BinarySearchTree::preorder (TreeNode* tn) {
     if (tn) {
         std::cout << tn->info << " ";
         preorder(tn->left);
@@ -87,11 +81,11 @@ void DSZP::BinarySearchTree::preorder (TreeNode* tn) {
     }
 }
 
-void DSZP::BinarySearchTree::traversalInorder () {
+void BinarySearchTree::traversalInorder () {
     inorder(head);
 }
 
-void DSZP::BinarySearchTree::inorder (TreeNode* tn) {
+void BinarySearchTree::inorder (TreeNode* tn) {
     if (tn) {
         inorder(tn->left);
         std::cout << tn->info << " ";
@@ -99,11 +93,11 @@ void DSZP::BinarySearchTree::inorder (TreeNode* tn) {
     }
 }
 
-void DSZP::BinarySearchTree::traversalPostorder () {
+void BinarySearchTree::traversalPostorder () {
     postorder(head);
 }
 
-void DSZP::BinarySearchTree::postorder (TreeNode *tn) {
+void BinarySearchTree::postorder (TreeNode *tn) {
     if (tn) {
         postorder(tn->left);
         postorder(tn->right);
@@ -111,7 +105,7 @@ void DSZP::BinarySearchTree::postorder (TreeNode *tn) {
     }
 }
 
-void DSZP::BinarySearchTree::removeAll (TreeNode *tn) {
+void BinarySearchTree::removeAll (TreeNode *tn) {
     if (tn) {
         removeAll(tn->left);
         removeAll(tn->right);
@@ -119,7 +113,8 @@ void DSZP::BinarySearchTree::removeAll (TreeNode *tn) {
     }
 }
 
-DSZP::BinarySearchTree::~BinarySearchTree() {
+BinarySearchTree::~BinarySearchTree() {
     removeAll(head);
 }
     
+}

@@ -1,23 +1,17 @@
-//
-//  LinkedList.cpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/8/25.
-//  Copyright © 2019 ZP. All rights reserved.
-//
+#include "linkedlist.h"
 
-#include "LinkedList.hpp"
+namespace ZP {
 
-DSZP::LinkedList::LinkedList () :
+LinkedList::LinkedList () :
     size(0), head(nullptr) {
 }
 
-DSZP::LinkedList::LinkedList(const LinkedList& ll) :
+LinkedList::LinkedList(const LinkedList& ll) :
 size(0), head(nullptr) {
     copy(ll.head);
 }
 
-DSZP::LinkedList DSZP::LinkedList::operator = (const LinkedList& ll) {
+LinkedList LinkedList::operator = (const LinkedList& ll) {
     while (head) {
         removeFirst();
     }
@@ -26,18 +20,18 @@ DSZP::LinkedList DSZP::LinkedList::operator = (const LinkedList& ll) {
     return *this;
 }
 
-void DSZP::LinkedList::copy (ListNode *ln) {
+void LinkedList::copy (ListNode *ln) {
     if (ln) {
         copy(ln->next);
         addFirst(ln->info);
     }
 }
 
-int DSZP::LinkedList::getSize () {
+int LinkedList::getSize () {
     return size;
 }
 
-void DSZP::LinkedList::addFirst (int val) {
+void LinkedList::addFirst (int val) {
     ListNode* ln = new ListNode();
     ln->info = val;
     ln->next = head;
@@ -45,7 +39,7 @@ void DSZP::LinkedList::addFirst (int val) {
     ++size;
 }
 
-void DSZP::LinkedList::addLast (int val) {
+void LinkedList::addLast (int val) {
     if (!head) {
         addFirst(val);
     } else {
@@ -60,7 +54,7 @@ void DSZP::LinkedList::addLast (int val) {
     }
 }
 
-int DSZP::LinkedList::removeFirst () {
+int LinkedList::removeFirst () {
     if (!head) {
         throw "Empty Linked List";
     }
@@ -72,7 +66,7 @@ int DSZP::LinkedList::removeFirst () {
     return ret;
 }
 
-int DSZP::LinkedList::removeLast () {
+int LinkedList::removeLast () {
     if (!head) {
         throw "Empty Linked List";
     } else if (head->next == nullptr) {
@@ -94,7 +88,7 @@ int DSZP::LinkedList::removeLast () {
     }
 }
 
-void DSZP::LinkedList::insert (int pos, int val) {
+void LinkedList::insert (int pos, int val) {
     if (!head || pos <= 0) {
         addFirst(val);
     } else if (pos >= size) {
@@ -113,7 +107,7 @@ void DSZP::LinkedList::insert (int pos, int val) {
     }
 }
 
-int DSZP::LinkedList::remove (int pos) {
+int LinkedList::remove (int pos) {
     if (!head) {
         throw "empty list";
     }
@@ -135,7 +129,7 @@ int DSZP::LinkedList::remove (int pos) {
     }
 }
 
-std::ostream& DSZP::operator << (std::ostream& out, const LinkedList& ll) {
+std::ostream& operator << (std::ostream& out, const LinkedList& ll) {
     if (ll.size == 0) {
         return out;
     }
@@ -147,7 +141,7 @@ std::ostream& DSZP::operator << (std::ostream& out, const LinkedList& ll) {
     return out;
 }
 
-void DSZP::LinkedList::reverse () {
+void LinkedList::reverse () {
     if (size <= 1) {
         return;
     }
@@ -162,7 +156,7 @@ void DSZP::LinkedList::reverse () {
     head = second;
 }
 
-int& DSZP::LinkedList::operator [] (int pos) {
+int& LinkedList::operator [] (int pos) {
     if (pos < 0 || pos >= size) {
         throw "Index out of bound";
     }
@@ -173,8 +167,10 @@ int& DSZP::LinkedList::operator [] (int pos) {
     return temp->info;
 }
 
-DSZP::LinkedList::~LinkedList () {
+LinkedList::~LinkedList () {
     while (head) {
         removeFirst();
     }
+}
+
 }

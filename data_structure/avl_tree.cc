@@ -1,34 +1,28 @@
-//
-//  AVLTree.cpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/9/6.
-//  Copyright © 2019 ZP. All rights reserved.
-//
+#include "avl_tree.h"
 
-#include "AVLTree.hpp"
+namespace ZP {
 
-DSZP::AVLTree::AVLTree () :
+AVLTree::AVLTree () :
 BinarySearchTree() {
 }
 
-DSZP::AVLTree::AVLTree (const AVLTree& tree) :
+AVLTree::AVLTree (const AVLTree& tree) :
 BinarySearchTree(tree) {
 }
 
-DSZP::AVLTree DSZP::AVLTree::operator = (const AVLTree &tree) {
+AVLTree AVLTree::operator = (const AVLTree &tree) {
     removeAll(head);
     size = tree.size;
     head = copy(tree.head);
     return *this;
 }
 /*
-void DSZP::AVLTree::add (int i) {
-    DSZP::BinarySearchTree::add(i);
+void AVLTree::add (int i) {
+    BinarySearchTree::add(i);
 }
 */
 
-DSZP::TreeNode* DSZP::AVLTree::addNode (int i, TreeNode *&tn) {
+TreeNode* AVLTree::addNode (int i, TreeNode *&tn) {
     if (!tn) {
         tn = new TreeNode();
         tn->info = i;
@@ -59,7 +53,7 @@ DSZP::TreeNode* DSZP::AVLTree::addNode (int i, TreeNode *&tn) {
     return tn;
 }
 
-int DSZP::AVLTree::getTreeHeight (TreeNode* tn) {
+int AVLTree::getTreeHeight (TreeNode* tn) {
     if (!tn) {
         return -1;
     }
@@ -67,26 +61,28 @@ int DSZP::AVLTree::getTreeHeight (TreeNode* tn) {
     return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
 }
 
-DSZP::TreeNode* DSZP::AVLTree::rotateLL (TreeNode *tn) {
+TreeNode* AVLTree::rotateLL (TreeNode *tn) {
     TreeNode* temp = tn->left;
     tn->left = temp->right;
     temp->right = tn;
     return temp;
 }
 
-DSZP::TreeNode* DSZP::AVLTree::rotateRR (TreeNode *tn) {
+TreeNode* AVLTree::rotateRR (TreeNode *tn) {
     TreeNode* temp = tn->right;
     tn->right = temp->left;
     temp->left = tn;
     return temp;
 }
 
-DSZP::TreeNode* DSZP::AVLTree::rotateLR (TreeNode *tn) {
+TreeNode* AVLTree::rotateLR (TreeNode *tn) {
     tn->left = rotateRR(tn->left);
     return rotateLL(tn);
 }
 
-DSZP::TreeNode* DSZP::AVLTree::rotateRL (TreeNode *tn) {
+TreeNode* AVLTree::rotateRL (TreeNode *tn) {
     tn->right = rotateLL(tn->right);
     return rotateRR(tn);
+}
+
 }

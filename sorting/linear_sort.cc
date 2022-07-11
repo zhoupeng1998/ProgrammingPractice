@@ -1,14 +1,8 @@
-//
-//  LinearSort.cpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/9/2.
-//  Copyright © 2019 ZP. All rights reserved.
-//
+#include "linear_sort.h"
 
-#include "LinearSort.hpp"
+namespace ZP {
 
-int* DSZP::countingSort (int* arr, int len) {
+int* countingSort (int* arr, int len) {
     if (len == 0) {
         return arr;
     }
@@ -36,7 +30,7 @@ int* DSZP::countingSort (int* arr, int len) {
     return arr;
 }
 
-int* DSZP::radixSort (int* arr, int len, int digit) {
+int* radixSort (int* arr, int len, int digit) {
     if (len == 0 || digit == 0) {
         return arr;
     }
@@ -69,4 +63,6 @@ int* DSZP::radixSort (int* arr, int len, int digit) {
         }
     }
     return arr;
+}
+
 }

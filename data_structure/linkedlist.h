@@ -1,18 +1,10 @@
-//
-//  LinkedList.hpp
-//  proj0
-//
-//  Created by Peng Zhou on 2019/8/25.
-//  Copyright © 2019 ZP. All rights reserved.
-//
-
-#ifndef LinkedList_hpp
-#define LinkedList_hpp
+#ifndef LINKEDLIST_H_
+#define LINKEDLIST_H_
 
 #include <iostream>
 
+namespace ZP {
 
-namespace DSZP {
     struct ListNode {
         int info;
         ListNode* next;
@@ -37,7 +29,7 @@ namespace DSZP {
         friend std::ostream& operator << (std::ostream& out, const LinkedList& ll);
         ~LinkedList() ;
     };
+
 }
 
-
-#endif /* LinkedList_hpp */
+#endif
