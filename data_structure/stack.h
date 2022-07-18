@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-namespace DSZP {
+namespace ZP {
 
 class Stack {
     int* buf;

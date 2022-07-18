@@ -1,4 +1,6 @@
-#include "stacK.h"
+#include "stack.h"
+
+namespace ZP {
 
 Stack::Stack() :
     capacity(10), size(0), buf(new int[11]), cur(buf) {
@@ -69,4 +71,6 @@ int& Stack::top() {
 
 Stack::~Stack() {
     delete [] buf;
+}
+
 }
