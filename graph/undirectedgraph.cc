@@ -6,19 +6,15 @@ UndirectedGraph::UndirectedGraph()
 : Graph() {}
 
 UndirectedGraph::UndirectedGraph(UndirectedGraph& graph)
-: Graph(graph.nodes, graph.edges, graph.adj_list) {}
+: Graph(graph.edges, graph.node_set, graph.adj_list) {}
 
 void UndirectedGraph::add_edge(int src, int dst) {
-    if (adj_list.find(src) == adj_list.end() || adj_list[src].size() == 0) {
-        nodes++;
-    }
-    if (adj_list.find(dst) == adj_list.end() || adj_list[dst].size() == 0) {
-        nodes++;
-    }
     if (adj_list[src].find(dst) == adj_list[src].end()) {
         edges++;
         adj_list[src].insert(dst);
         adj_list[dst].insert(src);
+        node_set.insert(src);
+        node_set.insert(dst);
     }
 }
 
@@ -27,12 +23,12 @@ void UndirectedGraph::remove_edge(int src, int dst) {
         adj_list[src].erase(dst);
         adj_list[dst].erase(src);
         edges--;
-    }
-    if (adj_list[src].size() == 0) {
-        nodes--;
-    }
-    if (adj_list[dst].size() == 0) {
-        nodes--;
+        if (adj_list[src].size() == 0) {
+            node_set.erase(src);
+        }
+        if (adj_list[dst].size() == 0) {
+            node_set.erase(dst);
+        }
     }
 }
 

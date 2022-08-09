@@ -5,14 +5,14 @@
 namespace ZP {
 
 Graph::Graph()
-: nodes(0), edges(0) {}
+: edges(0) {}
 
-Graph::Graph(int nodes, int edges, std::unordered_map<int, std::unordered_set<int>>& adj_list)
-: nodes(nodes), edges(edges), adj_list(adj_list) {}
+Graph::Graph(int edges, std::unordered_set<int>& node_set, std::unordered_map<int, std::unordered_set<int>>& adj_list)
+: edges(edges), node_set(node_set), adj_list(adj_list) {}
 
 void Graph::dump_graph() {
-    std::cout << "Nodes: " << nodes << std::endl;
-    std::cout << "Edges: " << edges << std::endl;
+    std::cout << "Nodes: " << num_nodes() << std::endl;
+    std::cout << "Edges: " << num_edges() << std::endl;
     for (auto& pair : adj_list) {
         if (pair.second.size() != 0) {
             std::cout << pair.first << ": [ ";

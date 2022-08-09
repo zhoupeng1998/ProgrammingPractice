@@ -16,6 +16,10 @@ struct DirectedGraph : public Graph {
     bool has_cycle() override;
     bool has_cycle_dfs(int node, std::unordered_map<int, bool>& visited, std::unordered_map<int, bool>& stack);
 
+    std::vector<int> topological_order() override;
+
+    std::unordered_map<int, int> incoming_count;
+
 };
 
 }
