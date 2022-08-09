@@ -5,6 +5,7 @@ add_definitions(-std=c++11)
 add_subdirectory(sorting)
 add_subdirectory(data_structure)
 add_subdirectory(smart_pointer)
+add_subdirectory(graph)
 
 add_executable(${PROJECT_NAME} main.cc)
 
@@ -12,6 +13,7 @@ target_link_libraries(${PROJECT_NAME}
     sorting
     data_structure
     smart_pointer
+    graph
 )
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
