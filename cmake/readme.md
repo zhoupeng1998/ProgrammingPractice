@@ -1,0 +1,1 @@
+### This directory contains some samples/skeletons for cmake projects
