@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  ubuntu-docker:
+    image: ubuntu:20.04
+    ports:
+      - 80:80
+    volumes:
+      - ./files:/files
+    restart: on-failure
+    command: ["sleep","infinity"]
+volumes:
+  ubuntu-files:
+    external:
+      true
