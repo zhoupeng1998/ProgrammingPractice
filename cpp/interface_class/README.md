@@ -1,0 +1,1 @@
+This is one way to Minimize compilation dependencies between files, using Interface class
