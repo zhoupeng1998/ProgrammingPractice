@@ -1,4 +1,4 @@
-// Implement Template Method Pattern using Non-Virtual Interface
+// Implement Template Method Pattern using Non-Virtual Interface (NVI)
 
 #include <iostream>
 
