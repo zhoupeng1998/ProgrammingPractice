@@ -19,4 +19,5 @@ Other modules or directories are not included in the CMake build file. They are:
 - cpp - some notes from my C++ programming experience
 - concurrency-app - C++ with concurrency practice
 - docker - sample starter docker files used to build from images
+- shared_library - shared library demo in Linux and Windows
 - miscellaneous - some previous works that I don't count on being able to run independently

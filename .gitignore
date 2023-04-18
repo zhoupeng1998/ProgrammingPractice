@@ -195,3 +195,6 @@ $RECYCLE.BIN/
 bin/
 build/
 .vscode/
+
+# Visual Studio
+.vs/
