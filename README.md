@@ -21,3 +21,6 @@ Other modules or directories are not included in the CMake build file. They are:
 - docker - sample starter docker files used to build from images
 - shared_library - shared library demo in Linux and Windows
 - miscellaneous - some previous works that I don't count on being able to run independently
+- java - java examples
+- cmake - cmake examples
+- gtest - gtest examples in linux
