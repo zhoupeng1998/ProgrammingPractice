@@ -1,0 +1,41 @@
+SELECT [db index (0-15)]
+DBSIZE
+FLUSHDB (flush current db)
+FLUSHALL (flush all dbs)
+
+string
+SET key value
+GET key value
+DEL key
+SETEX key seconds value (set with expiration)
+EXPIRE key seconds (set expiration)
+MSET key1 value1 key2 value2 ... (set multiple keys)
+MGET key1 key2 ... (get multiple keys)
+
+hash
+HSET key field value
+HGET key field
+HDEL key field
+HGETALL key [result is array of field1, value1, field2, value2, ... ordered as they are added]
+HKEYS key
+HVALS key
+HLEN key
+HMSET key field1 value1 field2 value2 ... (set multiple fields)
+HMGET key field1 field2 ... (get multiple fields)
+HEXISTS key field (check if field exists)
+DEL key (delete entire hash)
+
+list
+LPUSH key value1 value2 ... (push to head)
+RPUSH key value1 value2 ... (push to tail)
+LPOP key [count] (pop from head) [if all elements are popped, key is deleted]
+RPOP key [count] (pop from tail)
+LLEN key (get length)
+LRANGE key start stop (get range) [lrange key 0 -1 to get all] [-1 for last element, -2 for second to last, etc.]
+LINDEX key index (get element at index)
+
+set
+SADD key member1 member2 ... (add members)
+SMEMBERS key (get all members)
+SISMEMBER key member (check if member exists)
+SREM key member1 member2 ... (remove members)
