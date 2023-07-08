@@ -1,0 +1,48 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Stage 1') {
+            steps {
+                echo 'Hello world!' 
+            }
+        }
+        stage('Stage 2') {
+            steps {
+                echo "This is the second child stage"
+                
+                script {
+                    def stepNames = ['Task1', 'Task2', 'Task3']
+
+                    // Running steps in parallel
+                    parallel stepNames.collectEntries { stepName ->
+                        ["$stepName": {
+                            echo "Running $stepName"
+                            // Perform actions specific to each step
+                            sh "python3 step2.py $stepName"
+                        }]
+                    }
+                    
+                }
+                
+            }
+        }
+        stage('Stage 3') {
+            steps {
+                echo "This is the second child stage"
+                
+                script {
+                    def stepNames = ['Task1', 'Task2', 'Task3']
+
+                    // Running steps not in parallel
+                    stepNames.each { stepName ->
+                        echo "Running $stepName"
+                        // Perform actions specific to each step
+                        sh "python3 step2.py $stepName"
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+}

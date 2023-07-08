@@ -1,0 +1,79 @@
+Started by user Peng Zhou
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/pipeline1
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Stage 1)
+[Pipeline] echo
+Hello world!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Stage 2)
+[Pipeline] echo
+This is the second child stage
+[Pipeline] script
+[Pipeline] {
+[Pipeline] parallel
+[Pipeline] { (Branch: Task1)
+[Pipeline] { (Branch: Task2)
+[Pipeline] { (Branch: Task3)
+[Pipeline] echo
+Running Task1
+[Pipeline] sh
+[Pipeline] echo
+Running Task2
+[Pipeline] sh
+[Pipeline] echo
+Running Task3
+[Pipeline] sh
++ python3 step2.py Task1
++ python3 step2.py Task2
++ python3 step2.py Task3
+begin at 2023-07-08 19:26:31.631974
+end at 2023-07-08 19:26:36.637081
+[Pipeline] }
+begin at 2023-07-08 19:26:31.685207
+end at 2023-07-08 19:26:36.690311
+[Pipeline] }
+begin at 2023-07-08 19:26:31.737627
+end at 2023-07-08 19:26:36.742749
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Stage 3)
+[Pipeline] echo
+This is the second child stage
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Running Task1
+[Pipeline] sh
++ python3 step2.py Task1
+begin at 2023-07-08 19:26:37.594027
+end at 2023-07-08 19:26:42.599167
+[Pipeline] echo
+Running Task2
+[Pipeline] sh
++ python3 step2.py Task2
+begin at 2023-07-08 19:26:43.112198
+end at 2023-07-08 19:26:48.117313
+[Pipeline] echo
+Running Task3
+[Pipeline] sh
++ python3 step2.py Task3
+begin at 2023-07-08 19:26:48.628671
+end at 2023-07-08 19:26:53.633787
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

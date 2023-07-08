@@ -22,5 +22,7 @@ Other modules or directories are not included in the CMake build file. They are:
 - shared_library - shared library demo in Linux and Windows
 - miscellaneous - some previous works that I don't count on being able to run independently
 - java - java examples
+- golang - golang learning
 - cmake - cmake examples
 - gtest - gtest examples in linux
+- jenkins - jenkins learning examples
